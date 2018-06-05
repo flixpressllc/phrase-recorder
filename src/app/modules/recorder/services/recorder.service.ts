@@ -15,7 +15,9 @@ enum RecordingState {
 type DataUrl = string;
 export interface RecordingData { url: SafeUrl; blob: Blob; dataUrl: DataUrl; }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class RecorderService {
   private stream: MediaStream = null;
   private recorder: RecordRTC;
