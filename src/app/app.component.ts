@@ -36,6 +36,7 @@ export class AppComponent implements OnInit {
     while (this.fileChooser.nativeElement.files.length < 1) {
       yield timeout(500);
     }
+    setTimeout(() => window.scrollTo(0, document.body.scrollHeight), 200);
     return this.chosenFile = this.fileChooser.nativeElement.files[0];
   }) as TaskObject).setSchedule('restart');
 

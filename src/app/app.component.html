@@ -12,6 +12,7 @@
 </ng-container>
 
 <ng-container *ngIf="chosenPhrase && !isIPhone">
+  <div class="landscape">Please rotate your device to landscape.</div>
   <div class="monitor">
     <div class="phrase-to-read">{{ chosenPhrase.text }}</div>
     <div class="recording-indicator" *ngIf="startTimedRecording.isRunning"></div>
@@ -33,6 +34,7 @@
 </ng-container>
 
 <ng-container *ngIf="chosenPhrase && isIPhone">
+  <div class="landscape">Please rotate your device to landscape.</div>  
   <ol>
     <li>
       Memorize this phrase: 

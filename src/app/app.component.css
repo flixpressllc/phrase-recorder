@@ -89,3 +89,21 @@ button {
 .recording-timer {
   font-size: 2em;
 }
+
+.landscape {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: white;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (orientation: portrait) {
+  .landscape {
+    display: flex;
+  }
+}
