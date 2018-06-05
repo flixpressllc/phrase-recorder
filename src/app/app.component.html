@@ -1,5 +1,6 @@
 <ng-container *ngIf="chosenPhrase; else phraseChooser">
   <app-record-rtc #recorder></app-record-rtc>
+  <div class="countdown" *ngIf="countdown">{{ countdown }}</div>
   
   <div class="buttons">
     <button [disabled]="startTimedRecording.isRunning" (click)="startTimedRecording.perform()">
