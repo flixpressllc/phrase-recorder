@@ -2594,6 +2594,10 @@ handlebars@^4.0.1, handlebars@^4.0.3:
   optionalDependencies:
     uglify-js "^2.6"
 
+happy-helpers@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/happy-helpers/-/happy-helpers-1.2.2.tgz#eccf87568b97cc3d5ef85fb5b93d1fe7bb236b09"
+
 har-schema@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/har-schema/-/har-schema-2.0.0.tgz#a94c2224ebcac04782a0d9035521f24735b7ec92"
