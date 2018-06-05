@@ -22,6 +22,7 @@
     "@angular/router": "^6.0.3",
     "core-js": "^2.5.4",
     "happy-helpers": "^1.2.2",
+    "recordrtc": "^5.4.6",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },
