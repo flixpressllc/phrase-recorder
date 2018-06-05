@@ -1,1 +1,7 @@
-<app-record-rtc></app-record-rtc>
+<app-record-rtc #recorder></app-record-rtc>
+
+<div class="buttons">
+  <button (click)="recorder.startRecording()"> Record </button>
+  <button (click)="recorder.stopRecording()"> Stop</button>
+  <button (click)="recorder.reset()">Reset</button>
+</div>
