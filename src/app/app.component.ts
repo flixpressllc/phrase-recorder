@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   phrases: Phrase[] = [];
   chosenPhrase: Phrase = null;
   countdown: number = null;
+  recordingTimer: number = null;
   isIPhone = false;
   chosenFile: File = null;
   recordTimeInSeconds = 0;
@@ -46,6 +47,7 @@ export class AppComponent implements OnInit {
     yield timeout(COUNTDOWN_SECONDS * 1000);
 
     this.recorder.startRecording();
+    this.runRecordingTimer.perform();
     yield timeout(recordTime);
     yield this.recorder.stopRecording();
     return this.recordService.lastSuccessfulRecording;
@@ -57,6 +59,18 @@ export class AppComponent implements OnInit {
       yield timeout(1000);
       this.countdown -= 1;
     }
+    this.countdown = null;
+  }) as TaskObject).setSchedule('restart');
+
+  runRecordingTimer: TaskObject = (createTask.call(this, function* (this: AppComponent) {
+    const originalDuration = this.getRecordTime();
+    const originalTime = Date.now();
+    this.recordingTimer = originalDuration / 1000;
+    while (this.recordingTimer >= 1) {
+      yield timeout(100);
+      this.recordingTimer = (originalDuration - (Date.now() - originalTime)) / 1000;
+    }
+    this.recordingTimer = null;
   }) as TaskObject).setSchedule('restart');
 
   constructor(
@@ -81,7 +95,9 @@ export class AppComponent implements OnInit {
   }
 
   getRecordTime(): number {
-    return 1000;
+    if (!this.chosenPhrase) { return 0; }
+    const time = this.chosenPhrase.text.length * 60;
+    return time > 4000 ? time : 4000;
   }
 
   upload() {

@@ -17,6 +17,7 @@
     <div class="recording-indicator" *ngIf="startTimedRecording.isRunning"></div>
     <app-record-rtc #recorder></app-record-rtc>
     <div class="countdown" *ngIf="countdown">Ready? {{ countdown }}</div>
+    <div class="recording-timer" *ngIf="recordingTimer">{{ recordingTimer }}</div>
   </div>
   
   <div class="buttons">
@@ -35,7 +36,7 @@
   <p>Touch the button below. Once you are in your camera, you can record to make your video.</p>
 
   <p>
-    Make sure your video is {{ recordTimeInSeconds }} seconds long!
+    Make sure your video is about {{ recordTimeInSeconds }} seconds long!
   </p>
 
   <div class="phrase-to-read">{{ chosenPhrase.text }}</div>

@@ -81,3 +81,7 @@ button {
   justify-content: center;
   align-items: center;
 }
+
+.recording-timer {
+  font-size: 2em;
+}
