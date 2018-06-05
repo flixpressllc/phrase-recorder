@@ -12,7 +12,7 @@
   cursor: pointer;
 }
 
-.buttons > * {
+button {
   margin: 1em;
   font-size: 2em;
   padding: 0.5em;
@@ -55,6 +55,7 @@
     opacity:1;
   }
 }
+
 .countdown {
   position: absolute;
   top: 0;
@@ -67,4 +68,16 @@
   background: rgba(0,0,0,0.7);
   font-size: 3em;
   color: white;
+}
+
+.done {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

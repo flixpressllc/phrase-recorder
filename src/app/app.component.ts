@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   isIPhone = false;
   chosenFile: File = null;
   recordTimeInSeconds = 0;
+  done = false;
   @ViewChild('recorder') recorder: RecordRTCComponent;
   @ViewChild('iosFileChooser') fileChooser: ElementRef<HTMLInputElement>;
 
@@ -81,5 +82,9 @@ export class AppComponent implements OnInit {
 
   getRecordTime(): number {
     return 1000;
+  }
+
+  upload() {
+    this.done = true;
   }
 }

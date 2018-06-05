@@ -26,7 +26,7 @@
       <ng-container *ngSwitchDefault>Record</ng-container>
     </button>
   
-    <button *ngIf="startTimedRecording.currentValue">Upload</button>
+    <button *ngIf="startTimedRecording.currentValue" (click)="upload()">Upload</button>
   
   </div>
 </ng-container>
@@ -41,5 +41,9 @@
   <div class="phrase-to-read">{{ chosenPhrase.text }}</div>
   <input #iosFileChooser type="file" name="video" accept="video/*" capture/>
 
-  <button *ngIf="chosenFile">Upload</button>
+  <button *ngIf="chosenFile" (click)="upload()">Upload</button>
 </ng-container>
+
+<div class="done" *ngIf="done">
+  Thanks for your submission!
+</div>
