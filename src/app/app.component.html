@@ -1,4 +1,4 @@
-<ng-container *ngIf="!chosenPhrase; else recordingStep">
+<ng-container *ngIf="!chosenPhrase">
   <ng-container *ngIf="populatePhrases.isRunning">
     Populating phrases... please wait...
   </ng-container>
@@ -11,7 +11,7 @@
   </div>
 </ng-container>
 
-<ng-template #recordingStep>
+<ng-container *ngIf="chosenPhrase && !isIPhone">
   <div class="monitor">
     <div class="phrase-to-read">{{ chosenPhrase.text }}</div>
     <div class="recording-indicator" *ngIf="startTimedRecording.isRunning"></div>
@@ -29,4 +29,17 @@
     <button *ngIf="startTimedRecording.currentValue">Upload</button>
   
   </div>
-</ng-template>
+</ng-container>
+
+<ng-container *ngIf="chosenPhrase && isIPhone">
+  <p>Touch the button below. Once you are in your camera, you can record to make your video.</p>
+
+  <p>
+    Make sure your video is {{ recordTimeInSeconds }} seconds long!
+  </p>
+
+  <div class="phrase-to-read">{{ chosenPhrase.text }}</div>
+  <input #iosFileChooser type="file" name="video" accept="video/*" capture/>
+
+  <button *ngIf="chosenFile">Upload</button>
+</ng-container>
