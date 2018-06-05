@@ -33,16 +33,24 @@
 </ng-container>
 
 <ng-container *ngIf="chosenPhrase && isIPhone">
-  <p>Touch the button below. Once you are in your camera, you can record to make your video.</p>
-
-  <p>
-    Make sure your video is about {{ recordTimeInSeconds }} seconds long!
-  </p>
-
-  <div class="phrase-to-read">{{ chosenPhrase.text }}</div>
-  <input #iosFileChooser type="file" name="video" accept="video/*" capture/>
-
-  <button *ngIf="chosenFile" (click)="upload()">Upload</button>
+  <ol>
+    <li>
+      Memorize this phrase: 
+      <div class="phrase-to-read">{{ chosenPhrase.text }}</div>
+    </li>
+    <li>
+      <p>
+        Touch the button below. Once you are in your camera, you can record to make your video.
+        <strong>
+          Make sure your video is about {{ recordTimeInSeconds }} seconds long!
+        </strong>
+      </p>
+      <input #iosFileChooser type="file" name="video" accept="video/*" capture/>
+    </li>
+    <li *ngIf="chosenFile">
+      <button (click)="upload()">Upload</button>
+    </li>
+  </ol>
 </ng-container>
 
 <div class="done" *ngIf="done">

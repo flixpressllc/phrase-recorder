@@ -46,6 +46,10 @@ button {
   animation: led .8s infinite;
 }
 
+.phrase-to-read {
+  font-size: 2em;
+}
+
 @keyframes led {
   from {
     opacity:.2;
