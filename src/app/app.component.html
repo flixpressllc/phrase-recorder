@@ -2,10 +2,13 @@
   <app-record-rtc #recorder></app-record-rtc>
   
   <div class="buttons">
-    <button (click)="recorder.startRecording()"> Record </button>
-    <button (click)="recorder.stopRecording()"> Stop</button>
-    <button (click)="recorder.reset()">Reset</button>
+    <button [disabled]="startTimedRecording.isRunning" (click)="startTimedRecording.perform()">
+      <ng-container *ngIf="startTimedRecording.currentValue">Do Over</ng-container>
+      <ng-container *ngIf="!startTimedRecording.currentValue">Record</ng-container>
+    </button>
   </div>
+
+  <button *ngIf="startTimedRecording.currentValue">Upload</button>
 </ng-container>
 
 <ng-template #phraseChooser>
