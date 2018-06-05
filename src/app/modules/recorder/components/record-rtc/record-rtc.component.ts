@@ -10,6 +10,7 @@ import { SafeUrl } from '@angular/platform-browser';
 export class RecordRTCComponent implements AfterViewInit, OnDestroy {
 
   private stream: MediaStream;
+  public src: string | SafeUrl = null;
 
   @ViewChild('video') _video;
   get video(): HTMLVideoElement {
@@ -41,9 +42,9 @@ export class RecordRTCComponent implements AfterViewInit, OnDestroy {
       muted: true,
       controls: false,
       autoplay: true,
-      src: null,
       srcObject: this.stream,
     });
+    this.src = null;
   }
 
   setPlayerToReviewMode(url: string | SafeUrl) {
@@ -52,8 +53,8 @@ export class RecordRTCComponent implements AfterViewInit, OnDestroy {
       controls: true,
       autoplay: false,
       srcObject: null,
-      src: url,
     });
+    this.src = url;
   }
 
   reset() {
