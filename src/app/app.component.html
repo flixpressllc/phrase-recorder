@@ -1,16 +1,22 @@
 <ng-container *ngIf="chosenPhrase; else phraseChooser">
-  <div class="phrase-to-read">{{ chosenPhrase.text }}</div>
-  <app-record-rtc #recorder></app-record-rtc>
-  <div class="countdown" *ngIf="countdown">{{ countdown }}</div>
+  <div class="monitor">
+    <div class="phrase-to-read">{{ chosenPhrase.text }}</div>
+    <div class="recording-indicator" *ngIf="startTimedRecording.isRunning"></div>
+    <app-record-rtc #recorder></app-record-rtc>
+    <div class="countdown" *ngIf="countdown">Ready? {{ countdown }}</div>
+  </div>
   
   <div class="buttons">
-    <button [disabled]="startTimedRecording.isRunning" (click)="startTimedRecording.perform()">
-      <ng-container *ngIf="startTimedRecording.currentValue">Do Over</ng-container>
-      <ng-container *ngIf="!startTimedRecording.currentValue">Record</ng-container>
+    <button class="record-button" [disabled]="startTimedRecording.isRunning" (click)="startTimedRecording.perform()" [ngSwitch]="true">
+      <ng-container *ngSwitchCase="startTimedRecording.isRunning">Recording...</ng-container>
+      <ng-container *ngSwitchCase="!!startTimedRecording.currentValue">Do Over</ng-container>
+      <ng-container *ngSwitchDefault>Record</ng-container>
     </button>
+
+    <button *ngIf="startTimedRecording.currentValue">Upload</button>
+
   </div>
 
-  <button *ngIf="startTimedRecording.currentValue">Upload</button>
 </ng-container>
 
 <ng-template #phraseChooser>
@@ -20,8 +26,8 @@
   
   <div class="phrase-chooser" *ngIf="!populatePhrases.isRunning">
     Choose a phrase:
-    <div class="phrase" *ngFor="let phrase of phrases">
-      <button (click)="choosePhrase(phrase)">Choose</button>{{ phrase.text }}
+    <div class="phrase" *ngFor="let phrase of phrases" (click)="choosePhrase(phrase)">
+      {{ phrase.text }}
     </div>
   </div>
 </ng-template>
