@@ -1,4 +1,17 @@
-<ng-container *ngIf="chosenPhrase; else phraseChooser">
+<ng-container *ngIf="!chosenPhrase; else recordingStep">
+  <ng-container *ngIf="populatePhrases.isRunning">
+    Populating phrases... please wait...
+  </ng-container>
+  
+  <div class="phrase-chooser" *ngIf="!populatePhrases.isRunning">
+    Choose a phrase:
+    <div class="phrase" *ngFor="let phrase of phrases" (click)="choosePhrase(phrase)">
+      {{ phrase.text }}
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #recordingStep>
   <div class="monitor">
     <div class="phrase-to-read">{{ chosenPhrase.text }}</div>
     <div class="recording-indicator" *ngIf="startTimedRecording.isRunning"></div>
@@ -12,22 +25,8 @@
       <ng-container *ngSwitchCase="!!startTimedRecording.currentValue">Do Over</ng-container>
       <ng-container *ngSwitchDefault>Record</ng-container>
     </button>
-
-    <button *ngIf="startTimedRecording.currentValue">Upload</button>
-
-  </div>
-
-</ng-container>
-
-<ng-template #phraseChooser>
-  <ng-container *ngIf="populatePhrases.isRunning">
-    Populating phrases... please wait...
-  </ng-container>
   
-  <div class="phrase-chooser" *ngIf="!populatePhrases.isRunning">
-    Choose a phrase:
-    <div class="phrase" *ngFor="let phrase of phrases" (click)="choosePhrase(phrase)">
-      {{ phrase.text }}
-    </div>
+    <button *ngIf="startTimedRecording.currentValue">Upload</button>
+  
   </div>
 </ng-template>
