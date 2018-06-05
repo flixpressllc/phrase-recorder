@@ -1,7 +1,16 @@
-<app-record-rtc #recorder></app-record-rtc>
+<ng-container *ngIf="chosenPhrase; else phraseChooser">
+  <app-record-rtc #recorder></app-record-rtc>
+  
+  <div class="buttons">
+    <button (click)="recorder.startRecording()"> Record </button>
+    <button (click)="recorder.stopRecording()"> Stop</button>
+    <button (click)="recorder.reset()">Reset</button>
+  </div>
+</ng-container>
 
-<div class="buttons">
-  <button (click)="recorder.startRecording()"> Record </button>
-  <button (click)="recorder.stopRecording()"> Stop</button>
-  <button (click)="recorder.reset()">Reset</button>
-</div>
+<ng-template #phraseChooser>
+  Choose a phrase:
+  <div class="phrase" *ngFor="let phrase of phrases">
+    <button (click)="choosePhrase(phrase)">Choose</button>{{ phrase.text }}
+  </div>
+</ng-template>
