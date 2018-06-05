@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
+    "angular-concurrency": "^1.0.0-beta.1",
     "core-js": "^2.5.4",
     "happy-helpers": "^1.2.2",
     "recordrtc": "^5.4.6",

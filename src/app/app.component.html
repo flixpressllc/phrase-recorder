@@ -9,8 +9,14 @@
 </ng-container>
 
 <ng-template #phraseChooser>
-  Choose a phrase:
-  <div class="phrase" *ngFor="let phrase of phrases">
-    <button (click)="choosePhrase(phrase)">Choose</button>{{ phrase.text }}
+  <ng-container *ngIf="populatePhrases.isRunning">
+    Populating phrases... please wait...
+  </ng-container>
+  
+  <div class="phrase-chooser" *ngIf="!populatePhrases.isRunning">
+    Choose a phrase:
+    <div class="phrase" *ngFor="let phrase of phrases">
+      <button (click)="choosePhrase(phrase)">Choose</button>{{ phrase.text }}
+    </div>
   </div>
 </ng-template>
